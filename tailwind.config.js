@@ -9,6 +9,14 @@ module.exports = {
       fontFamily: {
         Poppins: ["Poppins", "sans-serif"],
       },
+      backgroundImage: {
+        achieve: "url('../../public/img/achieve.jpg')",
+        success: "url('../../public/img/success.jpg')",
+        organize: "url('../../public/img/organize.jpg')",
+      },
+      backgroundColor: {
+        vision: "rgba(0, 0, 0, 0.2)",
+      },
     },
   },
   plugins: [],
