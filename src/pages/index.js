@@ -4,7 +4,7 @@ import styles from "@/styles/index.module.css";
 
 function App() {
   return (
-    <div className="to-do min-h-screen font-Poppins bg-gray-50">
+    <div className="to-do min-h-screen font-body bg-gray-50">
       <div className="flex items-center justify-center h-16 bg-indigo-600">
         <div className="p-6 rounded-b-lg">
           <h1 className="text-5xl font-bold text-white">To-Do App</h1>
@@ -19,7 +19,7 @@ function App() {
         <div className="grid grid-rows-1 grid-cols-1 md:grid-cols-3 gap-12 p-4">
           <div className="flex justify-start items-end h-96 bg-indigo-300 shadow-2xl rounded-xl p-4 bg-achieve bg-cover">
             <div className="text-white bg-vision rounded">
-              <h1 className="text-xl font-bold">Achieve More Every Day</h1>
+              <h1 className="text-2xl font-bold">Achieve More Every Day</h1>
               <p className="">
                 Start each day with a clear plan and end it with accomplishment.
               </p>
@@ -27,7 +27,7 @@ function App() {
           </div>
           <div className="flex justify-start items-end h-96 bg-indigo-300 shadow-2xl rounded-xl p-4 bg-success bg-cover">
             <div className="text-white bg-vision rounded">
-              <h1 className="text-xl font-bold">Your Path to Success</h1>
+              <h1 className="text-2xl font-bold">Your Path to Success</h1>
               <p className="">
                 Stay organized and motivated as you progress towards success.
               </p>
@@ -35,7 +35,7 @@ function App() {
           </div>
           <div className="flex justify-start items-end h-96 bg-indigo-300 shadow-2xl rounded-xl p-4 bg-organize bg-cover">
             <div className="text-white bg-vision rounded">
-              <h1 className="text-xl font-bold ">
+              <h1 className="text-2xl font-bold ">
                 Organize Your Life with Ease
               </h1>
               <p className="">

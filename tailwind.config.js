@@ -7,7 +7,7 @@ module.exports = {
         diffWhite: "#F3F7EC",
       },
       fontFamily: {
-        Poppins: ["Poppins", "sans-serif"],
+        body: ["Poppins", "sans-serif"],
       },
       backgroundImage: {
         achieve: "url('../../public/img/achieve.jpg')",
