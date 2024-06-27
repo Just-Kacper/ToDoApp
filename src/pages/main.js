@@ -5,18 +5,43 @@ function NewPage() {
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [todaysTasksCount, setTodaysTasksCount] = useState(0);
+  const [importantTasksCount, setImportantTasksCount] = useState(0);
+  const [importantTasks, setImportantTasks] = useState(new Set());
+  const [removedTasksCount, setRemovedTasksCount] = useState(0);
 
   const handleAddTask = () => {
     if (newTask.trim() !== "") {
       setTasks([...tasks, newTask]);
       setNewTask("");
       setShowModal(false);
+      setTodaysTasksCount(todaysTasksCount + 1);
     }
   };
 
   const handleRemoveTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+    setRemovedTasksCount(removedTasksCount + 1);
+  };
+
+  const handleCompleteTask = (index) => {
+    setCompletedCount(completedCount + 1);
+    const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
+  const handleImportantTask = (index) => {
+    const newImportantTasks = new Set(importantTasks);
+    if (newImportantTasks.has(index)) {
+      newImportantTasks.delete(index);
+      setImportantTasksCount(importantTasksCount - 1);
+    } else {
+      newImportantTasks.add(index);
+      setImportantTasksCount(importantTasksCount + 1);
+    }
+    setImportantTasks(newImportantTasks);
   };
 
   return (
@@ -71,13 +96,16 @@ function NewPage() {
         <div className="flex justify-center items-end p-8 bg-vision rounded-md">
           <ul>
             <li>
-              <h4 className="mb-4">Important Tasks:</h4>
+              <h4 className="mb-4">Important Tasks: {importantTasksCount}</h4>
             </li>
             <li>
-              <h4 className="mb-4">Today's Tasks:</h4>
+              <h4 className="mb-4">Today's Tasks: {todaysTasksCount}</h4>
             </li>
             <li>
-              <h4 className="mb-4">Completed Tasks:</h4>
+              <h4 className="mb-4">Completed Tasks: {completedCount}</h4>
+            </li>
+            <li>
+              <h4 className="mb-4">Removed Tasks: {removedTasksCount} </h4>
             </li>
           </ul>
         </div>
@@ -89,7 +117,12 @@ function NewPage() {
         </h2>
         <div className="grid grid-cols-3 grid-rows-3 gap-12 p-4 text-center text-black">
           {tasks.map((task, index) => (
-            <ul key={index} className="border border-1 border-indigo-400">
+            <ul
+              key={index}
+              className={`border border-1 border-indigo-400 ${
+                importantTasks.has(index) ? "bg-yellow-100" : ""
+              }`}
+            >
               <li className="p-4">
                 {task}
                 <div className="grid grid-cols-3 gap-2 mt-2">
@@ -99,10 +132,16 @@ function NewPage() {
                   >
                     Remove
                   </button>
-                  <button className="p-1 bg-yellow-400 text-white rounded hover:bg-yellow-600">
+                  <button
+                    className="p-1 bg-yellow-400 text-white rounded hover:bg-yellow-600"
+                    onClick={() => handleImportantTask(index)}
+                  >
                     Important
                   </button>
-                  <button className="p-1 bg-green-400 text-white rounded hover:bg-green-600">
+                  <button
+                    className="p-1 bg-green-400 text-white rounded hover:bg-green-600"
+                    onClick={() => handleCompleteTask(index)}
+                  >
                     Completed
                   </button>
                 </div>
